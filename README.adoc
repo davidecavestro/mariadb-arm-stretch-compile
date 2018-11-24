@@ -1,0 +1,19 @@
+# mariadb-docker-armhf-builder
+:toc:
+
+This image hosts the build stage for mariadb.
+
+Since Mariadb compile process takes a lot of time, the build process has been splitted simply to keep every single stage build time unde the limits of Docker hub.
+So this stage simply prepares the build environment.
+
+## Build and run
+ 
+```
+docker build --tag mariadb-arm-stretch-builder:10.3 . 
+docker run -t -i --entrypoint /usr/bin/qemu-arm-static mariadb-arm-stretch-builder:10.3 /bin/bash
+```
+
+## License
+Inherited from Mariadb:
+Note:
+MariaDB is specifically available only under version 2 of the GNU General Public License (GPLv2). (I.e. Without the "any later version" clause.) This is inherited from MySQL. Please see the README file in the MySQL distribution for more information.
