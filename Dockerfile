@@ -8,7 +8,7 @@ RUN \
   echo "deb-src http://deb.debian.org/debian stretch main" >> /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y --no-install-recommends install apt-utils git ca-certificates libneon27-gnutls-dev ninja-build && \
-  apt-get -y --no-install-recommends build-dep mariadb-server openssl openssl-dev zlib1g-dev
+  apt-get -y --no-install-recommends build-dep mariadb-server openssl libssl-dev zlib1g-dev
 
 ARG MARIADB_VERSION=10.3
 RUN git clone --branch $MARIADB_VERSION --single-branch --depth=1 https://github.com/MariaDB/server.git /src
