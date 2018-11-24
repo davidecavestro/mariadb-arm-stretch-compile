@@ -12,11 +12,11 @@ script:
       docker build -t davidecavestro/mariadb-arm-stretch-builder --cache-from davidecavestro/mariadb-arm-stretch-builder .
       # push image
 
-      #if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-      #  docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-      #  TAG=$(grep "ARG MARIADB_VERSION" Dockerfile | awk -F '=' '{print $2}')-travis
-      #  docker tag davidecavestro/mariadb-arm-stretch-builder davidecavestro/mariadb-arm-stretch-builder:$TAG
-      #  docker push davidecavestro/mariadb-arm-stretch-builder:$TAG
-      ##  docker push davidecavestro/mariadb-arm-stretch-builder
-      #fi
+      if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+        docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+        TAG=$(grep "ARG MARIADB_VERSION" Dockerfile | awk -F '=' '{print $2}')-travis
+        docker tag davidecavestro/mariadb-arm-stretch-builder davidecavestro/mariadb-arm-stretch-builder:$TAG
+        docker push davidecavestro/mariadb-arm-stretch-builder:$TAG
+      #  docker push davidecavestro/mariadb-arm-stretch-builder
+      fi
     )
